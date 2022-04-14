@@ -13,12 +13,15 @@ class MahasiswaController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
     public function index()
     {
-        $mahasiswa = $mahasiswa = DB::table('mahasiswa')->get(); // Mengambil semua isi tabel
-        $posts = Mahasiswa::orderBy('Nim', 'desc')->paginate(6);
+        // $mahasiswa = $mahasiswa = DB::table('mahasiswa')->get(); // Mengambil semua isi tabel
+        // $posts = Mahasiswa::orderBy('Nim', 'desc')->paginate(3);
+        // return view('mahasiswa.index', compact('mahasiswa'));
+        // with('i', (request()->input('page', 1) - 1) * 5);
+        $mahasiswa = Mahasiswa::latest('nim')->paginate(3);
         return view('mahasiswa.index', compact('mahasiswa'));
-        with('i', (request()->input('page', 1) - 1) * 5);
     }
 
     /**
@@ -44,10 +47,12 @@ class MahasiswaController extends Controller
             'Nama' => 'required',
             'Kelas' => 'required',
             'Jurusan' => 'required',
+            'Email' => 'required',
+            'Alamat' => 'required',
+            'Tanggal_lahir' => 'required',
             ]);
             Mahasiswa::create($request->all());
-            return redirect()->route('mahasiswa.index')
-                ->with('success', 'Mahasiswa Berhasil Ditambahkan');
+            return redirect()->route('mahasiswa.index')->with('success', 'Mahasiswa Berhasil Ditambahkan');
     }
 
     /**
@@ -89,8 +94,11 @@ class MahasiswaController extends Controller
             'Nama' => 'required',
             'Kelas' => 'required',
             'Jurusan' => 'required',
+            'Email' => 'required',
+            'Alamat' => 'required',
+            'Tanggal_lahir' => 'required',
         ]);
-        Mahasiswa::where('nim',$Nim)->first()->update($request->all());
+        Mahasiswa::where('nim',$Nim)->firstOrFail()->update($request->all());
         return redirect()->route('mahasiswa.index')->with('success', 'Mahasiswa Berhasil Diupdate');
     }
 
