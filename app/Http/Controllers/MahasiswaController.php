@@ -40,7 +40,8 @@ class MahasiswaController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+
+     public function store(Request $request)
     {
         $request->validate([
             'Nim' => 'required',
@@ -112,5 +113,19 @@ class MahasiswaController extends Controller
     {
         Mahasiswa::where('nim',$Nim)->first()->delete();
         return redirect()->route('mahasiswa.index')-> with('success', 'Mahasiswa Berhasil Dihapus');
+    }
+
+    public function searchMhs(Request $request)
+    {
+        $search     = $request->search;
+        $mahasiswa  = Mahasiswa::where("nim", "LIKE", "%$search%")
+            ->orWhere("nama", "LIKE", "%$search%")
+            ->orWhere("kelas", "LIKE", "%$search%")
+            ->orWhere("jurusan", "LIKE", "%$search%")
+            ->orWhere("email", "LIKE", "%$search%")
+            ->orWhere("alamat", "LIKE", "%$search%")
+            ->orWhere("tanggal_lahir", "LIKE", "%$search%")
+            ->paginate(3);
+        return view('mahasiswa.index', compact('mahasiswa'));
     }
 }

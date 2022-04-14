@@ -16,3 +16,4 @@ use Illuminate\Http\Request;
 */
 
 Route::resource('mahasiswa', MahasiswaController::class);
+Route::post('search', [MahasiswaController::class, 'searchMhs'])->name('mahasiswa.search');

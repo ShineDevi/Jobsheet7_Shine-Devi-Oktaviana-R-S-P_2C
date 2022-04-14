@@ -8,8 +8,15 @@
             <div class="float-right my-2">
                 <a class="btn btn-success" href="{{ route('mahasiswa.create') }}"> Input Mahasiswa</a>
             </div>
+            <form class="form-inline" method="POST" action="{{ route('mahasiswa.search') }}">
+                @csrf
+                <input name="search" class="form-control mr-sm-2" type="text" autocomplete="off"
+                    placeholder="Masukkan Nama/NIM/dll">
+                <button class="btn btn-success" type="submit">Cari Mahasiswa</button>
+            </form>
         </div>
     </div>
+
     @if ($message = Session::get('success'))
         <div class="alert alert-success">
             <p>{{ $message }}</p>
@@ -54,3 +61,4 @@
         </div> -->
         {{ $mahasiswa -> links('mahasiswa.pagination') }}
         @endsection
+        
