@@ -25,15 +25,27 @@
                 </div>
                 <div class="form-group">
                     <label for="Nama">Nama</label>
-                    <input type="Nama" name="Nama" class="form-control" id="Nama" ariadescribedby="Nama" >
+                    <input type="text" name="Nama" class="form-control" id="Nama" ariadescribedby="Nama" >
                 </div>
                 <div class="form-group">
                     <label for="Kelas">Kelas</label>
-                    <input type="Kelas" name="Kelas" class="form-control" id="Kelas" ariadescribedby="password" >
+                    <input type="text" name="Kelas" class="form-control" id="Kelas" ariadescribedby="Kelas" >
                 </div>
                 <div class="form-group">
                     <label for="Jurusan">Jurusan</label>
-                    <input type="Jurusan" name="Jurusan" class="form-control" id="Jurusan" ariadescribedby="Jurusan" >
+                    <input type="text" name="Jurusan" class="form-control" id="Jurusan" ariadescribedby="Jurusan" >
+                </div>
+                <div class="form-group">
+                    <label for="Email">Email</label>
+                    <input type="text" name="Email" class="form-control" id="Email" ariadescribedby="Email" >
+                </div>
+                <div class="form-group">
+                    <label for="Alamat">Alamat</label>
+                    <input type="text" name="Alamat" class="form-control" id="Alamat" ariadescribedby="Alamat" >
+                </div>
+                <div class="form-group">
+                    <label for="Tanggal_lahir">Tanggal lahir</label>
+                    <input type="date" name="Tanggal_lahir" class="form-control" id="Tanggal_lahir" ariadescribedby="Tanggal_lahir" >
                 </div>
                 <button type="submit" class="btn btn-primary">Submit</button>
                 </form>
