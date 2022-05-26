@@ -96,9 +96,6 @@ class MahasiswaController extends Controller
      */
     public function edit($Nim)
     {
-        //menampilkan detail data dengan menemukan berdasarkan Nim Mahasiswa untuk diedit
-        // $Mahasiswa = DB::table('mahasiswa')->where('nim', $Nim)->first();
-        // return view('mahasiswa.edit', compact('Mahasiswa'));
         $mahasiswa = Mahasiswa::with('kelas')->where('nim', $Nim)->first();
         $kelas = Kelas::all();
         return view('mahasiswa.edit', compact('mahasiswa','kelas'));
@@ -121,7 +118,7 @@ class MahasiswaController extends Controller
             'Alamat' => 'required',
             'Tanggal_lahir' => 'required',
         ]);
-        $mahasiswa = new Mahasiswa;
+        $mahasiswa = Mahasiswa::with('kelas')->where('nim', $Nim)->first();
         $mahasiswa->Nim = $request->get('Nim');
         $mahasiswa->Nama = $request->get('Nama');
         $mahasiswa->Jurusan = $request->get('Jurusan');
@@ -137,7 +134,7 @@ class MahasiswaController extends Controller
         $mahasiswa->save();
 
         // Mahasiswa::where('nim',$Nim)->firstOrFail()->update($request->all());
-        
+
         return redirect()->route('mahasiswa.index')->with('success', 'Mahasiswa Berhasil Diupdate');
     }
 
