@@ -18,16 +18,16 @@
 
 
         {{-- Pagination Elements --}}
-        @foreach ($elements as $element)
+        @foreach ($elements as $elemen)
             {{-- "Three Dots" Separator --}}
-            @if (is_string($element))
-                <li class="page-item disabled"><a class="page-link"><span>{{ $element }}</span></a></li>
+            @if (is_string($elemen))
+                <li class="page-item disabled"><a class="page-link"><span>{{ $elemen }}</span></a></li>
             @endif
 
 
             {{-- Array Of Links --}}
-            @if (is_array($element))
-                @foreach ($element as $page => $url)
+            @if (is_array($elemen))
+                @foreach ($elemen as $page => $url)
                     @if ($page == $paginator->currentPage())
                         <li class="page-item active"><a class="page-link"><span>{{ $page }}</span></a></li>
                     @else

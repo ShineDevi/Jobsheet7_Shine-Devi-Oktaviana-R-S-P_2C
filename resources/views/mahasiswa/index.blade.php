@@ -35,13 +35,13 @@
         </tr>
         @foreach ($mahasiswa as $mhs)
         <tr>
-            <td>{{ $mhs ->nim }}</td>
-            <td>{{ $mhs ->nama }}</td>
-            <td>{{ $mhs ->kelas }}</td>
-            <td>{{ $mhs ->jurusan }}</td>
-            <td>{{ $mhs ->email }}</td>
-            <td>{{ $mhs ->alamat }}</td>
-            <td>{{ $mhs ->tanggal_lahir }}</td>
+            <td>{{ $mhs->nim }}</td>
+            <td>{{ $mhs->nama }}</td>
+            <td>{{ $mhs->kelas->nama_kelas}}</td>
+            <td>{{ $mhs->jurusan }}</td>
+            <td>{{ $mhs->email }}</td>
+            <td>{{ $mhs->alamat }}</td>
+            <td>{{ $mhs->tanggal_lahir }}</td>
             <td>
             <form action="{{ route('mahasiswa.destroy',['mahasiswa'=>$mhs->nim]) }}" method="POST">
                 <a class="btn btn-info" href="{{ route('mahasiswa.show',$mhs->nim) }}">Show</a>
@@ -54,11 +54,11 @@
         </tr>
         @endforeach
         </table>
-        <!-- <div class="row">
+        <div class="row">
             <div class="d-flex">
                 {{ $mahasiswa->links('pagination::bootstrap-4') }}
             </div>
-        </div> -->
-        {{ $mahasiswa -> links('mahasiswa.pagination') }}
+        </div>
+        <!-- {{ $mahasiswa -> links('mahasiswa.pagination') }} -->
         @endsection
         
