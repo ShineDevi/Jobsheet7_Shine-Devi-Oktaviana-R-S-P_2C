@@ -85,7 +85,7 @@ class MahasiswaController extends Controller
         // $Mahasiswa = Mahasiswa::where('nim',$Nim)->first();
         // return view('mahasiswa.detail', compact('Mahasiswa'));
         $Mahasiswa = Mahasiswa::with('kelas')->where('nim',$Nim)->first();
-        return view('mahasiswa.detail', ['Mahasiswa' => $mahasiswa]);
+        return view('mahasiswa.detail', ['Mahasiswa' => $Mahasiswa]);
     }
 
     /**
@@ -161,5 +161,10 @@ class MahasiswaController extends Controller
             ->orWhere("tanggal_lahir", "LIKE", "%$search%")
             ->paginate(3);
         return view('mahasiswa.index', compact('mahasiswa'));
+    }
+    public function tampil_khs($nim)
+    {
+        $data = Mahasiswa::where('nim', $nim)->with(['kelas', 'khs.mataKuliah'])->first();
+        return view('mahasiswa.khs', compact('data'));
     }
 }

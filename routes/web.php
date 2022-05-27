@@ -14,6 +14,8 @@ use Illuminate\Http\Request;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
+Route::prefix('mahasiswa')->group(function () {
+    Route::get('nilai/{nim}', [MahasiswaController::class, 'tampil_khs'])->name('mahasiswa.khs');
+});
 Route::resource('mahasiswa', MahasiswaController::class);
 Route::post('search', [MahasiswaController::class, 'searchMhs'])->name('mahasiswa.search');

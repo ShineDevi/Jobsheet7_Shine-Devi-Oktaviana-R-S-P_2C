@@ -29,4 +29,9 @@ class Mahasiswa extends Model
     {
         return self::where('nim', $Nim)->firstOrFail();
     }
+
+    public function khs()
+    {
+        return $this->hasMany(Mahasiswa_MataKuliah::class, 'mahasiswa_id');
+    }
 }
