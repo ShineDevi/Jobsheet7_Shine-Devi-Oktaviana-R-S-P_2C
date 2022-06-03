@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Kelas;
 use App\Models\Mahasiswa;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Http\Request;
 
 class MahasiswaController extends Controller
@@ -61,6 +62,10 @@ class MahasiswaController extends Controller
             $mahasiswa->Email = $request->Email;
             $mahasiswa->Alamat = $request->Alamat;
             $mahasiswa->Tanggal_lahir = $request->Tanggal_lahir;
+            if ($request->file('foto')) {
+                $photo_name         = $request->file('foto')->store('images', 'public');
+                $mahasiswa->foto    = $photo_name;
+            }
             $mahasiswa->save();
 
             $kelas = new Kelas;
@@ -126,6 +131,13 @@ class MahasiswaController extends Controller
         $mahasiswa->Alamat = $request->get('Alamat');
         $mahasiswa->Tanggal_lahir = $request->get('Tanggal_lahir');
         $mahasiswa->save();
+
+        if ($request->file('foto')) {
+            if ($mahasiswa->foto && file_exists(storage_path('app/public/' . $mahasiswa->foto))) {
+                \Storage::delete('public/' . $mahasiswa->foto);
+            }
+            $mahasiswa->foto    = $request->file('foto')->store('images', 'public');
+        }
 
         $kelas = new Kelas;
         $kelas->id = $request->get('kelas');
