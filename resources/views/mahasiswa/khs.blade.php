@@ -9,6 +9,9 @@
             </div>
         </div>
     </div>
+    <a style="width: 120px; height: 40px" href="{{ route('mahasiswa.cetak_khs', $data->nim) }}"
+            class="mt-4 btn btn-success float-right">Cetak
+            KHS</a>
     <table class="mt-5 mr-auto" border="0" align="left">
         <thead>
             <tr>

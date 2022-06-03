@@ -16,6 +16,7 @@ use Illuminate\Http\Request;
 */
 Route::prefix('mahasiswa')->group(function () {
     Route::get('nilai/{nim}', [MahasiswaController::class, 'tampil_khs'])->name('mahasiswa.khs');
+    Route::get('cetak_khs/{nim}', [MahasiswaController::class, 'cetak_khs'])->name('mahasiswa.cetak_khs');
 });
 Route::resource('mahasiswa', MahasiswaController::class);
 Route::post('search', [MahasiswaController::class, 'searchMhs'])->name('mahasiswa.search');
